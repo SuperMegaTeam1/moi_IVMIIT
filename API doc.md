@@ -1,7 +1,7 @@
 # API contracts
 
 Базовый адрес API:
-`http://localhost:8080/api/v1`
+`http://localhost:8080/api`
 
 Все запросы и ответы передаются в формате `application/json`.
 
@@ -21,7 +21,7 @@
 
 ### 1. Авторизация
 
-`POST /auth/login`
+`POST /login`
 
 Описание:
 Авторизация пользователя в системе по email/логину и паролю.
@@ -43,13 +43,15 @@ Response 200 OK
   "token": "string",
   "user": {
     "id": "uuid",
-    "roleId": "uuid",
     "roleName": "string",
     "firstName": "string",
     "lastName": "string",
-    "fatherName": "string|null",
+    "fatherName": "string",
     "email": "string",
-    "userType": "string"
+    "studentId": "uuid|null",
+    "teacherId": "uuid|null",
+    "groupId": "uuid|null",
+    "groupName": "string|null"
   }
 }
 ```
@@ -73,21 +75,23 @@ Response codes
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI...",
   "user": {
-    "id": "7c8c8d9a-1234-4567-8901-aabbccddeeff",
-    "roleId": "21b2d50d-8f11-4d0a-b88a-11f111111111",
+    "id": "uuid",
     "roleName": "student",
     "firstName": "Тимур",
     "lastName": "Закиров",
     "fatherName": "Салаватович",
-    "email": "timur@stud.kpfu.ru",
-    "userType": "student"
+    "email": "student@test.com",
+    "studentId": "uuid|null",
+    "teacherId": "uuid|null",
+    "groupId": "uuid|null",
+    "groupName": "09-411|null"
   }
 }
 ```
 
 ### 2. Получение профиля
 
-`GET /profiles/{userId}`
+`GET /me`
 
 Описание:
 Получение профиля пользователя по его идентификатору.
