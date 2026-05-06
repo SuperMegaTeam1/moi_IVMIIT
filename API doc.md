@@ -659,6 +659,7 @@ Content-Type: application/json
 ## 10. Получение предметов преподавателя
 
 `GET /teachers/me/subjects`
+`GET /students/me/subjects`
 
 **Описание**
 
