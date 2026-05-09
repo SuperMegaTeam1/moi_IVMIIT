@@ -656,7 +656,7 @@ Content-Type: application/json
 
 ---
 
-## 10. Получение предметов преподавателя
+## 10. Получение предметов преподавателя и студента
 
 `GET /teachers/me/subjects`
 `GET /students/me/subjects`
@@ -813,6 +813,78 @@ Response 200 OK
       "studentId": "uuid",
       "attended": "boolean|null",
       "grade": "int|null"
+    }
+  ]
+}
+```
+
+Response codes
+- `200 OK` — журнал сохранен
+- `400 Bad Request` — неверные данные в запросе
+- `401 Unauthorized` — пользователь не авторизован
+- `403 Forbidden` — доступ только для преподавателя
+- `404 Not Found` — занятие или студент не найден
+- `500 Internal Server Error` — ошибка сервера
+
+### 13. Получение списка групп
+
+`PUT /groups`
+
+Описание:
+Отдаёт список групп преподавателя у которых, он ведет.
+
+
+
+Headers
+- `Authorization: Bearer <token>`
+- `Content-Type: application/json`
+
+В токене передаём id пользователя.
+
+Response 200 OK
+```json
+{
+  "items": [
+    {
+      "groupId": "uuid",
+      "groupName": "string"
+    }
+  ]
+}
+```
+
+Response codes
+- `200 OK` — журнал сохранен
+- `400 Bad Request` — неверные данные в запросе
+- `401 Unauthorized` — пользователь не авторизован
+- `403 Forbidden` — доступ только для преподавателя
+- `404 Not Found` — занятие или студент не найден
+- `500 Internal Server Error` — ошибка сервера
+
+### 14. Получение списка студентов у конкретной группы 
+
+`PUT /{groupId}/students`
+
+Описание:
+Отдаёт список студентов из конкретной группы.
+
+
+
+Headers
+- `Authorization: Bearer <token>`
+- `Content-Type: application/json`
+
+В токене передаём id пользователя.
+
+Response 200 OK
+```json
+{
+  "items": [
+    {
+      "studentId": "uuid",
+      "firstName": "string"
+      "lastName": "string",
+      "fatherName": "string"
     }
   ]
 }
