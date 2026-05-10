@@ -290,7 +290,7 @@ Response codes
 
 ### 5. Получение уведомлений
 
-`GET /notifications`
+`GET /notifications выполнено`
 
 Описание:
 Возвращает список уведомлений текущего пользователя.
@@ -586,8 +586,7 @@ Content-Type: application/json
 
 ## 9. Отправка сообщения группе
 
-`POST /teacher-messages`
-
+`POST /teacher-messages выполнено`
 **Описание**
 
 Отправляет сообщение группе студентов.
@@ -790,7 +789,7 @@ GET /students/me/subjects
 
 **Описание**
 
-Возвращает журнал группы по конкретному предмету: список студентов, список оценок за каждый урок и список дат занятий. Структура ответа уточняется.
+Возвращает журнал группы по конкретному предмету: список студентов, список оценок за каждый урок и список дат занятий.
 
 **Path parameters**
 
@@ -809,7 +808,22 @@ Authorization: Bearer <token>
 
 **Response (200 OK)**
 
-> Структура ответа требует уточнения.
+```json
+{
+  "subjectId": "uuid",
+  "groupId": "uuid"
+  "items": [
+    {
+      "lessonId": "uuid",
+      "date": "string (YYYY-MM-DD)"
+      "studentId": "uuid",
+      "attended": "boolean|null",
+      "grade": "int|null",
+      
+    }
+  ]
+}
+```
 
 **Коды ответа**
 
@@ -823,6 +837,31 @@ Authorization: Bearer <token>
 
 ```http
 GET /journal/11111111-aaaa-bbbb-cccc-111111111111/33333333-aaaa-bbbb-cccc-333333333333
+```
+
+**Пример ответа**
+
+```json
+{
+"subjectId": "11111111-aaaa-bbbb-cccc-111111111111",
+  "groupId": "33333333-aaaa-bbbb-cccc-333333333333"
+  "items": [
+    {
+      "lessonId": "22222222-aaaa-bbbb-cccc-333333333333",
+      "date": "2026-05-03"
+      "studentId": "22222222-aaaa-bbbb-cccc-444444444444",
+      "attended": "null",
+      "grade": "5",   
+    },
+    {
+      "lessonId": "22222222-aaaa-bbbb-cccc-333333333333",
+      "date": "2026-05-03"
+      "studentId": "22222222-aaaa-bbbb-cccc-555555555555",
+      "attended": "true",
+      "grade": "null",   
+    }
+  ]
+}
 ```
 
 ### 12. Заполнение журнала занятия
