@@ -659,7 +659,6 @@ Content-Type: application/json
 ## 10. Получение предметов преподавателя и студента
 
 `GET /teachers/me/subjects`
-`GET /students/me/subjects`
 
 **Описание**
 
@@ -722,6 +721,63 @@ GET /teachers/me/subjects
         }
       ]
     }
+  ]
+}
+```
+
+## 10.1. Получение предметов студента 
+`GET /students/me/subjects`
+
+**Описание**
+
+Возвращает список предметов студента.
+
+**Headers**
+
+```
+Authorization: Bearer <token>
+```
+
+**Response (200 OK)**
+
+```json
+{
+  "items": [
+    {
+      "subjectId": "uuid",
+      "subjectName": "string",
+    }
+  ]
+}
+```
+
+**Коды ответа**
+
+- `200 OK` — предметы студента получены
+- `401 Unauthorized` — пользователь не авторизован
+- `403 Forbidden` — доступ только для студента
+- `500 Internal Server Error` — ошибка сервера
+
+**Пример запроса**
+
+```http
+GET /students/me/subjects
+```
+
+**Пример ответа**
+
+```json
+{
+  "items": [
+    {
+      "subjectId": "11111111-aaaa-bbbb-cccc-111111111111",
+      "subjectName": "Базы данных",
+    },
+
+    {
+      "subjectId": "11111111-aaaa-bbbb-dddd-111111111111",
+      "subjectName": "Математический анализ",
+    },
   ]
 }
 ```
