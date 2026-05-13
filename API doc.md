@@ -386,6 +386,10 @@ Authorization: Bearer <token>
   "teacherFirstName": "string",
   "teacherLastName": "string",
   "teacherFatherName": "string|null"
+  "items": [
+    "lessonStartDate": "string",
+    "studentGrade": "int"
+  ]
 }
 ```
 
